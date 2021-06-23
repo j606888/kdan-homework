@@ -1,12 +1,13 @@
 .container {
-  height: 300px;
+  height: 400px;
   background-color: #999;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 24px;
   background-image: url('./space.jpg');
-  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container form {

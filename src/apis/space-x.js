@@ -1,4 +1,4 @@
-const HOST = "https://api.spacexdata.co"
+const HOST = "https://api.spacexdata.com"
 
 exports.launches = () => {
   return fetch(`${HOST}/v4/launches/upcoming`).then((res) =>

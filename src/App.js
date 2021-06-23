@@ -15,9 +15,11 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Hero onSubmit={handleSubmit}/>
-      <SpaceBox term={term} />
-      <Footer />
+      <main>
+        <Hero onSubmit={handleSubmit} />
+        <SpaceBox term={term} />
+        <Footer />
+      </main>
     </div>
   )
 }
