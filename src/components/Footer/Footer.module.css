@@ -1,0 +1,25 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 8px;
+}
+
+.from {
+  font-size: 6px;
+}
+
+.select {
+  padding: 12px;
+  width: 160px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+i {
+  margin-left: 16px;
+  font-size: 28px;
+}
