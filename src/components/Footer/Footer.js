@@ -7,7 +7,7 @@ const Footer = () => {
       <div className={styles.from}>© 2021 Space Travel Ltd.</div>
       <div className={styles.icons}>
         <select className={styles.select} name="" id="">
-          <option value="">簡體中文</option>
+          <option value="">殘體中文</option>
           <option value="">繁體中文</option>
           <option value="">English</option>
         </select>

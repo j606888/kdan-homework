@@ -1,5 +1,7 @@
+const HOST = "https://api.spacexdata.co"
+
 exports.launches = () => {
-  return fetch("https://api.spacexdata.com/v4/launches/upcoming").then((res) =>
+  return fetch(`${HOST}/v4/launches/upcoming`).then((res) =>
     res.json()
   ).then(launches => {
     return launches.map((launch) => ({
@@ -14,7 +16,7 @@ exports.launches = () => {
 }
 
 exports.rockets = () => {
-  return fetch("https://api.spacexdata.com/v4/rockets").then((res) =>
+  return fetch(`${HOST}/v4/rockets`).then((res) =>
     res.json()
   ).then((rockets) => {
     const result = {}
@@ -25,7 +27,7 @@ exports.rockets = () => {
 }
 
 exports.launchpads = () => {
-  return fetch("https://api.spacexdata.com/v4/launchpads").then((res) =>
+  return fetch(`${HOST}/v4/launchpads`).then((res) =>
     res.json()
   ).then(pads => {
     const result = {}

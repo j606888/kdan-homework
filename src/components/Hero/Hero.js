@@ -7,7 +7,7 @@ const Hero = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    props.onSubmit(term)
+    props.onSubmit(term.toLowerCase())
   }
 
   return (

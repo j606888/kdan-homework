@@ -6,11 +6,11 @@ import { launches, rockets, launchpads } from "../../apis/space-x"
 const buildEvents = async () => {
   const launchesArr = await launches()
   const rocketsObj = await rockets()
-  const launchpadsOjb = await launchpads()
+  const launchpadsObj = await launchpads()
 
   const result = launchesArr.map((launch) => {
     const rocket = rocketsObj[launch.rocket]
-    const launchpad = launchpadsOjb[launch.launchpad] 
+    const launchpad = launchpadsObj[launch.launchpad]
     return {
       ...launch,
       rocket: rocket,
@@ -28,21 +28,29 @@ const SpaceBox = (props) => {
   const term = props.term
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      const eventObjs = await buildEvents()
-      setEvents(eventObjs)
-    }
-    fetchEvents()
+    // 這寫起來有點醜，好像 callback 好一點
+    // const fetchEvents = async () => {
+    //   const eventObjs = await buildEvents()
+    //   setEvents(eventObjs)
+    // }
+    // fetchEvents()
+
+    buildEvents().then((eventObjs) => setEvents(eventObjs))
   }, [])
 
   useEffect(() => {
-    if (!term) {
-      setFilteredEvents(events)
-    } else {
-      const lowerTerm = term.toLowerCase()
-      setFilteredEvents(events.filter(event => {
-        return event.rocket.toLowerCase().includes(lowerTerm) || event.name.toLowerCase().includes(lowerTerm) || event.launchpad.toLowerCase().includes(lowerTerm)
-      }))
+    if (!term) setFilteredEvents(events)
+    else {
+      setFilteredEvents(
+        events.filter((event) => {
+          return (
+            // 這裏好像也有更好的寫法但想不太到 QQ
+            event.rocket.toLowerCase().includes(term) ||
+            event.name.toLowerCase().includes(term) ||
+            event.launchpad.toLowerCase().includes(term)
+          )
+        })
+      )
     }
   }, [term, events])
 
