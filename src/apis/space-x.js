@@ -18,20 +18,11 @@ exports.launches = () => {
 exports.rockets = () => {
   return fetch(`${HOST}/v4/rockets`).then((res) =>
     res.json()
-  ).then((rockets) => {
-    const result = {}
-    rockets.forEach(rocket => result[rocket.id] = rocket.name)
-
-    return result
-  })
+  ).then((rockets) => rockets.reduce((obj, cur) => ({ ...obj, [cur.id]: cur.name}), {}))
 }
 
 exports.launchpads = () => {
   return fetch(`${HOST}/v4/launchpads`).then((res) =>
     res.json()
-  ).then(pads => {
-    const result = {}
-    pads.forEach(pad => result[pad.id] = { name: pad.name, locality: pad.locality})
-    return result
-  })
+  ).then(pads => pads.reduce((obj, cur) => ({ ...obj, [cur.id]: { name: cur.name, locality: cur.locality}}), {}))
 }
