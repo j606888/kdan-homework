@@ -42,14 +42,14 @@ const SpaceBox = (props) => {
     if (!term) setFilteredEvents(events)
     else {
       setFilteredEvents(
-        events.filter((event) => {
-          return (
+        events.filter((event) =>
+          (
             // 這裏好像也有更好的寫法但想不太到 QQ
             event.rocket.toLowerCase().includes(term) ||
             event.name.toLowerCase().includes(term) ||
             event.launchpad.toLowerCase().includes(term)
           )
-        })
+        )
       )
     }
   }, [term, events])
