@@ -10,8 +10,8 @@
   background-size: cover;
 }
 
-.container form {
-  width: 100%;
+.container input {
+  width: 400px;
   text-align: center;
 }
 

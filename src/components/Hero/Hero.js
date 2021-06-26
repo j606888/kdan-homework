@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Hero.module.css' 
 
 const Hero = (props) => {
   const [term, setTerm] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      props.onSubmit(term.toLowerCase())
+    }, 400)
 
-    props.onSubmit(term.toLowerCase())
-  }
+    return () => clearTimeout(timer)
+  }, [term, props])
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
-        <input className={styles.search} type="text" placeholder="Date, locality or rocket" onChange={(e) => { setTerm(e.target.value)}}/>
-      </form>
+      <input
+        className={styles.search}
+        type="text"
+        placeholder="Date, locality or rocket"
+        onChange={(e) => setTerm(e.target.value)}
+      />
     </div>
   )
 }

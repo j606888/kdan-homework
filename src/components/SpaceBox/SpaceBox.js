@@ -4,9 +4,7 @@ import SpaceCard from "./SpaceCard"
 import { launches, rockets, launchpads } from "../../apis/space-x"
 
 const buildEvents = async () => {
-  const launchesArr = await launches()
-  const rocketsObj = await rockets()
-  const launchpadsObj = await launchpads()
+  const [launchesArr, rocketsObj, launchpadsObj] = await Promise.all([launches(), rockets(), launchpads()])
 
   const result = launchesArr.map((launch) => {
     const rocket = rocketsObj[launch.rocket]
@@ -28,13 +26,6 @@ const SpaceBox = (props) => {
   const term = props.term
 
   useEffect(() => {
-    // 這寫起來有點醜，好像 callback 好一點
-    // const fetchEvents = async () => {
-    //   const eventObjs = await buildEvents()
-    //   setEvents(eventObjs)
-    // }
-    // fetchEvents()
-
     buildEvents().then((eventObjs) => setEvents(eventObjs))
   }, [])
 
